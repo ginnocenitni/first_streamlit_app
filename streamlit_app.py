@@ -28,8 +28,12 @@ streamlit.dataframe(fruits_to_show)
 streamlit.header("Fruityvice Fruit Advice!")
 
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json()) #here the data is printed as dictionary (json)
+
+#Here I have commented and copy paste the response. We will separete the address into two strings adress + fruit
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+# I have commented the line below instead of deleting it as suggested in the course. 
+#streamlit.text(fruityvice_response.json()) #here the data is printed as dictionary (json)
 
 #Let's us make it better to vizualization:
 
