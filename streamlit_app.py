@@ -27,15 +27,20 @@ streamlit.dataframe(fruits_to_show)
 
 streamlit.header("Fruityvice Fruit Advice!")
 
-#Creating a text box for client choosen fruits. Fruit_choice may be a list... whic I believe we will use in a loop soon
+#Creating a text box for client choosen fruits. Fruit_choice is a String
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
 
 import requests
 
 #Here I have commented and copy paste the response. We will separete the address into two strings adress + fruit
+
 #fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+
+#Here we have used 
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+
 # I have commented the line below instead of deleting it as suggested in the course. 
 #streamlit.text(fruityvice_response.json()) #here the data is printed as dictionary (json)
 
