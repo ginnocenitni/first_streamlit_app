@@ -34,6 +34,6 @@ streamlit.text(fruityvice_response.json()) #here the data is printed as dictiona
 #Let's us make it better to vizualization:
 
 # write your own comment -what does the next line do? - Answere: Normalize json semi-structured data into a table. 
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do? - Answere: Display the table on the page, as did before.  
 streamlit.dataframe(fruityvice_normalized)
