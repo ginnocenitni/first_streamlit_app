@@ -1,5 +1,9 @@
 import streamlit
+import pandas as pd
+import requests
 import snowflake.connector
+from urllib.error import URLError
+
 
 streamlit.title('My Parents New Healthy Diner')
 
@@ -10,7 +14,8 @@ streamlit.text('🐔 Hard-Boiled Free-Range Egg')
 streamlit.text('🥑🍞 Avocado Toast')
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
-import pandas as pd
+
+#import pandas as pd
 
 path1 = 'https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt'
 my_fruit_list = pd.read_csv(path1)
@@ -32,7 +37,7 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
 
-import requests
+#import requests
 
 #Here I have commented and copy paste the response. We will separete the address into two strings adress + fruit
 
@@ -51,6 +56,11 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do? - Answere: Display the table on the page, as did before.  
 streamlit.dataframe(fruityvice_normalized)
+
+#stoping the code run here to debug
+streamlit.stop()
+
+#import snowflake.connector
 
 # Query Our Trial Account Metadata (snowflake.connector)
 # my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
