@@ -31,32 +31,20 @@ streamlit.dataframe(fruits_to_show)
 
 # Bring information from FRUITYVICE API using package requests from python
 
+#New fruit selection scheme with try if and so on... 
 streamlit.header("Fruityvice Fruit Advice!")
-
-#Creating a text box for client choosen fruits. Fruit_choice is a String
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-streamlit.write('The user entered ', fruit_choice)
-
-#import requests
-
-#Here I have commented and copy paste the response. We will separete the address into two strings adress + fruit
-
-#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
-
-#Here we have used 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-
-# I have commented the line below instead of deleting it as suggested in the course. 
-#streamlit.text(fruityvice_response.json()) #here the data is printed as dictionary (json)
-
-#Let's us make it better to vizualization:
-
-# write your own comment -what does the next line do? - Answere: Normalize json semi-structured data into a table. 
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-# write your own comment - what does this do? - Answere: Display the table on the page, as did before.  
-streamlit.dataframe(fruityvice_normalized)
-
+try:
+   fruit_choice = streamlit.text_input('What fruit would you like information about?')
+   if not fruit_choice:
+       streamlit.error("Please, select a fruit to get information"
+   else:
+       fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+       fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+       streamlit.dataframe(fruityvice_normalized)
+                         
+except URLError as e:
+    streamlit.error()
+                         
 #stoping the code run here to debug
 streamlit.stop()
 
